@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="red_200">#FD5D5D</color>
+    <color name="col_danger">#ff0505</color>
+    <color name="col_medium">#E28C00</color>
+    <color name="col_safe">#008000</color>
+
+    <color name="bg_night_100">#D4F1F4</color>
+    <color name="bg_night_200">#4BC3F2</color>
+    <color name="bg_night_300">#5956A6</color>
+    <color name="bg_night_400">#313B59</color>
+
+    <color name="special_red">#F25E6B</color>
+    <color name="special_yellow">#F2D230</color>
+    <color name="special_orange">#D98A29</color>
+    <color name="special_white">#F2EAE4</color>
+    <color name="special_pink">#F2B2AC</color>
+</resources>

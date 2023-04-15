@@ -1,0 +1,17 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.MyStoryApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/bg_night_300</item>
+        <item name="colorPrimaryVariant">@color/bg_night_400</item>
+        <item name="colorOnPrimary">@color/bg_night_100</item>
+        <item name="colorError">@color/red_200</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/special_pink</item>
+        <item name="colorSecondaryVariant">@color/special_pink</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+</resources>

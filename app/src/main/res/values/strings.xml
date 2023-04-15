@@ -1,0 +1,21 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">My Story App</string>
+    <string name="tv_welcome">Welcome To</string>
+    <string name="btn_login">Login</string>
+    <string name="et_email_address">Email Address</string>
+    <string name="tv_register">Register an Account</string>
+    <string name="btn_register">Register</string>
+    <string name="not_have_account_yet">Not have account yet?</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="tv_bayu_tantra_bramandhita">Bayu Tantra Bramandhita</string>
+    <string name="tv_description">Bisakah Anda minum air ledeng di Australia? Kondisi air yang harus Anda ketahui sebelum bepergian</string>
+    <string name="btn_camera">Camera</string>
+    <string name="btn_gallery">Gellery</string>
+    <string name="cd_image_preview">Image Preview</string>
+    <string name="cd_post_description">Post Description</string>
+    <string name="btn_post_story">Post Story</string>
+    <string name="cd_add_post">Add Post</string>
+    <string name="btn_logout">Logout</string>
+    <string name="dummy_name">Bayu Tantra Bramandhita</string>
+    <string name="dummy_description">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</string>
+</resources>
