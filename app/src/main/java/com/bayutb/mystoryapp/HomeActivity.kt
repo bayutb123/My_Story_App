@@ -27,6 +27,7 @@ class HomeActivity : AppCompatActivity() {
         checkAuthUser()
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         buttons()
     }
 
