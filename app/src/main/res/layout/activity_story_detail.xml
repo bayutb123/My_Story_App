@@ -7,6 +7,25 @@
     app:layoutDescription="@xml/activity_story_detail_scene"
     tools:context=".StoryDetailActivity">
 
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tv_detail_name"
+        app:layout_constraintStart_toStartOf="@+id/tv_detail_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_detail_name">
+
+        <TextView
+            android:id="@+id/tv_detail_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/dummy_description" />
+
+    </ScrollView>
+
     <TextView
         android:id="@+id/tv_detail_name"
         android:layout_width="0dp"
@@ -23,21 +42,12 @@
     <ImageView
         android:id="@+id/iv_detail_story"
         android:layout_width="0dp"
-        android:layout_height="250dp"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/dummy_story"
         tools:ignore="ContentDescription" />
 
-    <TextView
-        android:id="@+id/tv_detail_description"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/dummy_description"
-        app:layout_constraintEnd_toEndOf="@+id/tv_detail_name"
-        app:layout_constraintStart_toStartOf="@+id/tv_detail_name"
-        app:layout_constraintTop_toBottomOf="@+id/tv_detail_name" />
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

@@ -28,6 +28,8 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+
         buttons()
     }
 
@@ -37,6 +39,15 @@ class HomeActivity : AppCompatActivity() {
         sessionManager = SessionManager(this)
         val token = sessionManager.checkAuth()
         if (token != null) {
+
+            viewModel = ViewModelProvider(this)[StoryListViewModel::class.java]
+            viewModel.fetchUsers(sessionManager.checkAuth().toString())
+            viewModel.getListStory().observe(this){
+                if (it != null) {
+                    adapter.setList(it)
+                }
+            }
+
             adapter = StoryListAdapter()
             adapter.notifyDataSetChanged()
             adapter.setOnItemClickCallback(object : StoryListAdapter.OnItemClickCallBack {
@@ -50,13 +61,7 @@ class HomeActivity : AppCompatActivity() {
                         }
                 }
             })
-            viewModel = ViewModelProvider(this)[StoryListViewModel::class.java]
-            viewModel.fetchUsers(sessionManager.checkAuth().toString())
-            viewModel.getListStory().observe(this){
-                if (it != null) {
-                    adapter.setList(it)
-                }
-            }
+
             binding.rvStory.setHasFixedSize(true)
             binding.rvStory.layoutManager = LinearLayoutManager(this@HomeActivity)
             binding.rvStory.adapter = adapter

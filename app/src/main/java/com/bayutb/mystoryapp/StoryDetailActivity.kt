@@ -26,7 +26,7 @@ class StoryDetailActivity : AppCompatActivity() {
         binding.apply {
             tvDetailName.text = intent.getStringExtra(I_NAME)
             tvDetailDescription.text = intent.getStringExtra(I_DESC)
-            Glide.with(applicationContext).load(intent.getStringExtra(I_PHOTOURL)).into(ivDetailStory)
+            Glide.with(applicationContext).load(intent.getStringExtra(I_PHOTOURL)).fitCenter().into(ivDetailStory)
         }
     }
 }
