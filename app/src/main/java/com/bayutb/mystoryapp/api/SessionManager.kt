@@ -7,11 +7,6 @@ import com.bayutb.mystoryapp.R
 class SessionManager(context: Context) {
     private var prefs: SharedPreferences = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)
 
-    companion object {
-        const val USER_TOKEN = "user_token"
-        const val USER_ID = "user_id"
-    }
-
     fun saveAuth(token: String, userId: String) {
         val editor = prefs.edit()
         editor.putString(USER_ID, userId)
@@ -31,5 +26,10 @@ class SessionManager(context: Context) {
         val editor = prefs.edit()
         editor.clear()
         editor.apply()
+    }
+
+    companion object {
+        const val USER_TOKEN = "user_token"
+        const val USER_ID = "user_id"
     }
 }
