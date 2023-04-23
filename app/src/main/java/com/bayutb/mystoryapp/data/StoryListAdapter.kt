@@ -1,6 +1,5 @@
 package com.bayutb.mystoryapp.data
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,7 +7,7 @@ import com.bayutb.mystoryapp.databinding.CardStoryBinding
 import com.bumptech.glide.Glide
 
 class StoryListAdapter : RecyclerView.Adapter<StoryListAdapter.ViewHolder>() {
-    private val listStory = ArrayList<StoryList>()
+    private var listStory = ArrayList<StoryList>()
     private var onItemClickCallBack: OnItemClickCallBack?= null
 
     inner class ViewHolder(private val binding: CardStoryBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -29,13 +28,6 @@ class StoryListAdapter : RecyclerView.Adapter<StoryListAdapter.ViewHolder>() {
         this.onItemClickCallBack = onItemClickCallBack
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun setList(story: ArrayList<StoryList>) {
-        listStory.clear()
-        listStory.addAll(story)
-        notifyDataSetChanged()
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =CardStoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(view)
@@ -45,6 +37,13 @@ class StoryListAdapter : RecyclerView.Adapter<StoryListAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(listStory[position])
+    }
+
+    fun updateList(newPersonList : ArrayList<StoryList>) {
+        val diffUtil = DiffUtil(listStory, newPersonList)
+        val diffResult = androidx.recyclerview.widget.DiffUtil.calculateDiff(diffUtil)
+        listStory = newPersonList
+        diffResult.dispatchUpdatesTo(this)
     }
 
     interface OnItemClickCallBack {

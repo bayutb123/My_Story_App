@@ -44,12 +44,11 @@ class HomeActivity : AppCompatActivity() {
             viewModel.fetchUsers(sessionManager.checkAuth().toString())
             viewModel.getListStory().observe(this){
                 if (it != null) {
-                    adapter.setList(it)
+                    adapter.updateList(it)
                 }
             }
 
             adapter = StoryListAdapter()
-            adapter.notifyDataSetChanged()
             adapter.setOnItemClickCallback(object : StoryListAdapter.OnItemClickCallBack {
                 override fun onItemClicked(data: StoryList) {
                     Intent(this@HomeActivity, StoryDetailActivity::class.java)
