@@ -94,6 +94,7 @@ class HomeActivity : AppCompatActivity() {
                         sessionManager.clearAuth()
                         Intent(this@HomeActivity, MainActivity::class.java).also {
                             startActivity(it)
+                            finish()
                         }
                     }
                     .setNegativeButton("Cancel") { dialog, _ ->
@@ -115,6 +116,7 @@ class HomeActivity : AppCompatActivity() {
         if (token == null || userId == null) {
             Intent(this@HomeActivity, MainActivity::class.java).also {
                 startActivity(it)
+                finish()
             }
         }
     }
