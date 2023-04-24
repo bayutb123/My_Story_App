@@ -28,8 +28,6 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
         buttons()
     }
 
@@ -103,6 +101,11 @@ class HomeActivity : AppCompatActivity() {
                 alert.show()
                 true
             }
+            R.id.go_maps -> {
+                val intent = Intent(this@HomeActivity, MapsActivity::class.java)
+                startActivity(intent)
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -118,5 +121,9 @@ class HomeActivity : AppCompatActivity() {
                 finish()
             }
         }
+    }
+
+    companion object{
+        const val DATA = "DATA"
     }
 }

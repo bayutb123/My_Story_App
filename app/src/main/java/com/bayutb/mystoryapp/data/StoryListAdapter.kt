@@ -3,6 +3,7 @@ package com.bayutb.mystoryapp.data
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bayutb.mystoryapp.MapsActivity
 import com.bayutb.mystoryapp.databinding.CardStoryBinding
 import com.bumptech.glide.Glide
 
@@ -48,6 +49,7 @@ class StoryListAdapter : RecyclerView.Adapter<StoryListAdapter.ViewHolder>() {
 
     interface OnItemClickCallBack {
         fun onItemClicked(data: StoryList)
+
     }
 
 }

@@ -24,7 +24,8 @@ interface ApiService {
     @GET("stories")
     fun fetchStories(
         @Header("Authorization") token: String,
-        @Query("size") loadSize: Int
+        @Query("size") loadSize: Int,
+        @Query("location") location :Int
     ): Call<StoryListResponse>
 
     @Multipart

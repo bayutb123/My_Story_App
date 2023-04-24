@@ -16,7 +16,7 @@ class StoryListViewModel(application: Application) : AndroidViewModel(applicatio
     val listStory = MutableLiveData<ArrayList<StoryList>>()
 
     fun fetchUsers(token: String) {
-        ApiConfig.getApiService().fetchStories("Bearer $token", 50).enqueue(object : Callback<StoryListResponse> {
+        ApiConfig.getApiService().fetchStories("Bearer $token", 50, 1).enqueue(object : Callback<StoryListResponse> {
             override fun onResponse(
                 call: Call<StoryListResponse>,
                 response: Response<StoryListResponse>

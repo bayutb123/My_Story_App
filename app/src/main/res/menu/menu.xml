@@ -4,6 +4,10 @@
     <item
         android:id="@+id/go_logout"
         android:icon="@drawable/baseline_logout_24"
-        android:title="@string/btn_logout"
-        app:showAsAction="ifRoom"/>
+        android:title="@string/btn_logout"/>
+
+    <item
+        android:id="@+id/go_maps"
+        android:icon="@drawable/baseline_logout_24"
+        android:title="@string/google_maps"/>
 </menu>
