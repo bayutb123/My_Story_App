@@ -1,39 +1,24 @@
 package com.bayutb.mystoryapp.data
 
-import android.app.Application
-import android.util.Log
-import android.widget.Toast
-import androidx.lifecycle.AndroidViewModel
+import android.content.Context
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.bayutb.mystoryapp.api.ApiConfig
-import com.bayutb.mystoryapp.api.StoryListResponse
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.bayutb.mystoryapp.injection.Injection
 
-class StoryListViewModel(application: Application) : AndroidViewModel(application) {
-    val listStory = MutableLiveData<ArrayList<StoryList>>()
+class StoryListViewModel(repository: StoryRepository) : ViewModel() {
+    val storyList: LiveData<PagingData<StoryList>> = repository.fetchStories().cachedIn(viewModelScope)
+}
 
-    fun fetchUsers(token: String) {
-        ApiConfig.getApiService().fetchStories("Bearer $token", 50, 1).enqueue(object : Callback<StoryListResponse> {
-            override fun onResponse(
-                call: Call<StoryListResponse>,
-                response: Response<StoryListResponse>
-            ) {
-                if (response.isSuccessful) {
-                    listStory.postValue(response.body()?.items)
-                }
-            }
-
-            override fun onFailure(call: Call<StoryListResponse>, t: Throwable) {
-                Toast.makeText(getApplication(), "Failed to retrieve stories", Toast.LENGTH_SHORT).show()
-                Log.d("Failure: ", "${t.message}")
-            }
-        })
-    }
-
-    fun getListStory() : LiveData<ArrayList<StoryList>>{
-        return listStory
+class Factory(private val context: Context,private val token: String) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(StoryListViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return StoryListViewModel(Injection.provideRepository("Bearer $token")) as T
+        }
+        throw java.lang.IllegalArgumentException("Unknown ViewModel class")
     }
 }

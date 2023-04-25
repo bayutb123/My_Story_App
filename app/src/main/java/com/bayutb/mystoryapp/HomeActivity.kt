@@ -6,10 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bayutb.mystoryapp.api.SessionManager
+import com.bayutb.mystoryapp.data.Factory
 import com.bayutb.mystoryapp.data.StoryList
 import com.bayutb.mystoryapp.data.StoryListAdapter
 import com.bayutb.mystoryapp.data.StoryListViewModel
@@ -19,7 +20,9 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private lateinit var sessionManager: SessionManager
     private lateinit var adapter: StoryListAdapter
-    private lateinit var viewModel: StoryListViewModel
+    private val viewModel: StoryListViewModel by viewModels {
+        Factory(this, sessionManager.checkAuth().toString())
+    }
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,15 +41,14 @@ class HomeActivity : AppCompatActivity() {
         val token = sessionManager.checkAuth()
         if (token != null) {
 
-            viewModel = ViewModelProvider(this)[StoryListViewModel::class.java]
-            viewModel.fetchUsers(sessionManager.checkAuth().toString())
-            viewModel.getListStory().observe(this){
+            adapter = StoryListAdapter()
+            viewModel.storyList.observe(this) {
                 if (it != null) {
-                    adapter.updateList(it)
+                    adapter.submitData(this.lifecycle, it)
                 }
             }
 
-            adapter = StoryListAdapter()
+
             adapter.setOnItemClickCallback(object : StoryListAdapter.OnItemClickCallBack {
                 override fun onItemClicked(data: StoryList) {
                     Intent(this@HomeActivity, StoryDetailActivity::class.java)
@@ -123,7 +125,4 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    companion object{
-        const val DATA = "DATA"
-    }
 }

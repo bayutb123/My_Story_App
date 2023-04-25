@@ -9,7 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bayutb.mystoryapp.api.SessionManager
 import com.bayutb.mystoryapp.data.StoryList
-import com.bayutb.mystoryapp.data.StoryListViewModel
+import com.bayutb.mystoryapp.data.StoryMapViewModel
 import com.bayutb.mystoryapp.databinding.ActivityMapsBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -26,7 +26,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
     private lateinit var fusedLocation: FusedLocationProviderClient
-    private lateinit var viewModel: StoryListViewModel
+    private lateinit var viewModel: StoryMapViewModel
     private lateinit var sessionManager: SessionManager
 
     private val requestPermissionLauncher =
@@ -55,8 +55,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
         sessionManager = SessionManager(this)
-        viewModel = ViewModelProvider(this)[StoryListViewModel::class.java]
-        viewModel.fetchUsers(sessionManager.checkAuth().toString())
+        viewModel = ViewModelProvider(this)[StoryMapViewModel::class.java]
+        viewModel.fetchStoryLocation(sessionManager.checkAuth().toString())
         fusedLocation = LocationServices.getFusedLocationProviderClient(this)
 
 
@@ -69,7 +69,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap.uiSettings.isZoomControlsEnabled = true
         mMap.uiSettings.isMyLocationButtonEnabled = true
 
-        viewModel.getListStory().observe(this){
+        viewModel.getMapStory().observe(this){
             if (it != null) {
                 addStoryMarker(it)
             }

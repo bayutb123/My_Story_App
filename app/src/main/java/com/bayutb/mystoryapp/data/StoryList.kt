@@ -1,4 +1,8 @@
 package com.bayutb.mystoryapp.data
+
+import androidx.room.Entity
+
+@Entity(tableName = "stories")
 data class StoryList(
     val id: String,
     val name : String,

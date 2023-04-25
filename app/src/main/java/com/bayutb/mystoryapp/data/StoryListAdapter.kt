@@ -2,18 +2,17 @@ package com.bayutb.mystoryapp.data
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bayutb.mystoryapp.MapsActivity
 import com.bayutb.mystoryapp.databinding.CardStoryBinding
 import com.bumptech.glide.Glide
 
-class StoryListAdapter : RecyclerView.Adapter<StoryListAdapter.ViewHolder>() {
-    private var listStory = ArrayList<StoryList>()
+class StoryListAdapter : PagingDataAdapter<StoryList, StoryListAdapter.ViewHolder>(DIFF_CALLBACK) {
     private var onItemClickCallBack: OnItemClickCallBack?= null
 
-    inner class ViewHolder(private val binding: CardStoryBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: CardStoryBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(data: StoryList) {
-
             binding.root.setOnClickListener {
                 onItemClickCallBack?.onItemClicked(data)
             }
@@ -34,22 +33,26 @@ class StoryListAdapter : RecyclerView.Adapter<StoryListAdapter.ViewHolder>() {
         return ViewHolder(view)
     }
 
-    override fun getItemCount(): Int = listStory.size
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(listStory[position])
-    }
-
-    fun updateList(newPersonList : ArrayList<StoryList>) {
-        val diffUtil = DiffUtil(listStory, newPersonList)
-        val diffResult = androidx.recyclerview.widget.DiffUtil.calculateDiff(diffUtil)
-        listStory = newPersonList
-        diffResult.dispatchUpdatesTo(this)
+        val data = getItem(position)
+        if (data != null) {
+            holder.bind(data)
+        }
     }
 
     interface OnItemClickCallBack {
         fun onItemClicked(data: StoryList)
-
     }
 
+    companion object {
+        val DIFF_CALLBACK = object : androidx.recyclerview.widget.DiffUtil.ItemCallback<StoryList>() {
+            override fun areItemsTheSame(oldItem: StoryList, newItem: StoryList): Boolean {
+                return oldItem == newItem
+            }
+
+            override fun areContentsTheSame(oldItem: StoryList, newItem: StoryList): Boolean {
+                return oldItem.id == newItem.id
+            }
+        }
+    }
 }

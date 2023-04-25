@@ -22,7 +22,14 @@ interface ApiService {
     ) : Call<LoginResponse>
 
     @GET("stories")
-    fun fetchStories(
+    suspend fun fetchStories(
+        @Header("Authorization") token: String,
+        @Query("size") loadSize: Int,
+        @Query("page") page : Int
+    ): StoryListResponse
+
+    @GET("stories")
+    fun fetchStoriesLocation(
         @Header("Authorization") token: String,
         @Query("size") loadSize: Int,
         @Query("location") location :Int
