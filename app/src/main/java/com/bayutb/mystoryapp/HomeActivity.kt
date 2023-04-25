@@ -21,7 +21,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var sessionManager: SessionManager
     private lateinit var adapter: StoryListAdapter
     private val viewModel: StoryListViewModel by viewModels {
-        Factory(this, sessionManager.checkAuth().toString())
+        Factory(sessionManager.checkAuth().toString())
     }
 
     @SuppressLint("NotifyDataSetChanged")
