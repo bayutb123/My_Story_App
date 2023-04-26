@@ -28,6 +28,7 @@ import java.io.File
 @Suppress("DEPRECATION")
 class PostActivity : AppCompatActivity() {
     private var getFile: File?= null
+    private var isBackCamera : Boolean ?= null
     private lateinit var binding: ActivityPostBinding
     private lateinit var sessionManager: SessionManager
 
@@ -104,11 +105,12 @@ class PostActivity : AppCompatActivity() {
                 it.data?.getSerializableExtra("picture")
             } as? File
 
-            val isBackCamera = it.data?.getBooleanExtra("isBackCamera", true) as Boolean
+            isBackCamera = it.data?.getBooleanExtra("isBackCamera", true) as Boolean
 
             myFile?.let { file ->
                 getFile = file
-                val img = rotateBitmap(BitmapFactory.decodeFile(file.path), isBackCamera)
+
+                val img = rotateBitmap(BitmapFactory.decodeFile(file.path), isBackCamera!!)
                 binding.postPreviewImage.setImageBitmap(img)
             }
         }
@@ -129,7 +131,7 @@ class PostActivity : AppCompatActivity() {
         if (getFile != null) {
             sessionManager = SessionManager(this)
             val token = sessionManager.checkAuth()
-            val file = getFile as File
+            val file = compressImage(getFile as File, 1000000, isBackCamera!!)
             val inputDescription = binding.etDescription.text.toString()
             val description = inputDescription.toRequestBody("text/plain".toMediaTypeOrNull())
             val requestImageFile = file.asRequestBody("image/*".toMediaTypeOrNull())
@@ -162,7 +164,15 @@ class PostActivity : AppCompatActivity() {
 
             })
         } else {
-            Toast.makeText(this@PostActivity, "Silakan masukkan berkas gambar terlebih dahulu.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@PostActivity, "Silakan masukkan berkas gambar terlebih dahulu., ${isBackCamera.toString()}", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        super.onBackPressed()
+        Intent(this@PostActivity, HomeActivity::class.java).also {
+            startActivity(it)
         }
     }
 }

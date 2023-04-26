@@ -34,7 +34,6 @@ class HomeActivity : AppCompatActivity() {
         buttons()
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     override fun onResume() {
         super.onResume()
         sessionManager = SessionManager(this)
@@ -72,6 +71,7 @@ class HomeActivity : AppCompatActivity() {
             goPost.setOnClickListener {
                 Intent(this@HomeActivity, PostActivity::class.java).also {
                     startActivity(it)
+                    finish()
                 }
             }
 

@@ -1,6 +1,5 @@
 package com.bayutb.mystoryapp
 
-import android.app.Application
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -15,8 +14,6 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import com.bayutb.mystoryapp.databinding.ActivityCameraXactivityBinding
-import java.io.File
-import java.text.SimpleDateFormat
 import java.util.*
 
 

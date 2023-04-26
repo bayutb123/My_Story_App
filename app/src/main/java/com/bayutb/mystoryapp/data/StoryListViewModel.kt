@@ -20,4 +20,5 @@ class Factory(private val token: String) : ViewModelProvider.Factory {
         }
         throw java.lang.IllegalArgumentException("Unknown ViewModel class")
     }
+
 }
