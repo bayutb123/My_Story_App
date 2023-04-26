@@ -82,10 +82,15 @@ fun uriToFile(selectedImg: Uri, context: Context): File {
     return myFile
 }
 
-fun compressImage(file : File, max: Int, isBackCamera: Boolean) :File {
+fun compressImage(file : File, max: Int, isBackCamera: Boolean?) :File {
 
     val bitmap = BitmapFactory.decodeFile(file.path)
-    val rotateFirst = rotateBitmap(bitmap, isBackCamera)
+    var rotateFirst: Bitmap
+    if (isBackCamera != null) {
+        rotateFirst = rotateBitmap(bitmap, isBackCamera)
+    } else {
+        rotateFirst = bitmap
+    }
     var compressQuality = 100
     var streamLength: Int
     do {

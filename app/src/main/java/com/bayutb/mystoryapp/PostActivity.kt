@@ -131,7 +131,11 @@ class PostActivity : AppCompatActivity() {
         if (getFile != null) {
             sessionManager = SessionManager(this)
             val token = sessionManager.checkAuth()
-            val file = compressImage(getFile as File, 1000000, isBackCamera!!)
+            val file :File = if (isBackCamera != null) {
+                compressImage(getFile as File, 1000000, isBackCamera)
+            } else {
+                compressImage(getFile as File, 1000000, null)
+            }
             val inputDescription = binding.etDescription.text.toString()
             val description = inputDescription.toRequestBody("text/plain".toMediaTypeOrNull())
             val requestImageFile = file.asRequestBody("image/*".toMediaTypeOrNull())
