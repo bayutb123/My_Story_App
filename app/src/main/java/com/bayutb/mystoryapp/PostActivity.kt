@@ -145,6 +145,7 @@ class PostActivity : AppCompatActivity() {
                 requestImageFile
             )
 
+            binding.btnPost.isEnabled = false
             val client = ApiConfig.getApiService().postStory("Bearer $token", imageMultiPart, description)
             client.enqueue(object : Callback<UploadResponse>{
                 override fun onResponse(
@@ -159,6 +160,7 @@ class PostActivity : AppCompatActivity() {
                         }
                     } else {
                         Toast.makeText(this@PostActivity, response.message(), Toast.LENGTH_SHORT).show()
+                        binding.btnPost.isEnabled = true
                     }
                 }
 
@@ -168,7 +170,8 @@ class PostActivity : AppCompatActivity() {
 
             })
         } else {
-            Toast.makeText(this@PostActivity, "Silakan masukkan berkas gambar terlebih dahulu., ${isBackCamera.toString()}", Toast.LENGTH_SHORT).show()
+            binding.btnPost.isEnabled = true
+            Toast.makeText(this@PostActivity, "Silakan masukkan berkas gambar terlebih dahulu.", Toast.LENGTH_SHORT).show()
         }
     }
 
